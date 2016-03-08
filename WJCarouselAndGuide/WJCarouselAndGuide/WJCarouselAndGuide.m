@@ -32,7 +32,7 @@
 -(void)showFirstTimeGuide:(NSArray *)imageArray{
     _isGuide = YES;
     if (![self isLaunchFirst]) {
-        [self removeFromSuperview];
+        [self removeAdvert];
         return;
     }
     

@@ -88,7 +88,7 @@
 
 // 图片轮播点击事件代理回调
 - (void)clickWithUrl:(NSString *)url{
-    __block UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 50)];
+    __block UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 40)];
     lb.textAlignment = NSTextAlignmentCenter;
     lb.text = [NSString stringWithFormat:@"点击的url是:%@",url];
     lb.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
