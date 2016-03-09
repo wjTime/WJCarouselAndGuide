@@ -94,6 +94,7 @@
     
     //创建ScrollView
     _src= [[UIScrollView alloc]initWithFrame:self.bounds];
+    _src.backgroundColor = [UIColor blackColor];
     _src.pagingEnabled = YES;
     _src.showsHorizontalScrollIndicator = NO;
     _src.bounces = NO;
