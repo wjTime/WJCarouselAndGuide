@@ -42,12 +42,22 @@
     // 设置代理
     adview.delegate = self;
     
-    // 参数一：展示的图片名  参数二:点击图片对应的url  参数三:是否可循环重复滚动  参数四:是否设置定时自动滚动 (要定时自动播放 isRepeat的值也必须是YES)
-    [adview showFirstTimeGuide:@[@"1",@"2",@"3"]];
+    // 参数一：展示的图片名  参数二：是否显示最后一页的点击按钮
+    [adview showFirstTimeGuide:@[@"1",@"2",@"3"] isShowLastPageBtn:YES];
     
-    // 设置pageControl的颜色等各种属性
+    // 设置pageControl等各种属性(可不设置,不设置是默认值)
     adview.pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     adview.pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    
+#if 1
+    // 设置点击进入引导页消失的按钮各种属性(可不设置,不设置是默认值)
+    adview.button.backgroundColor = [UIColor redColor];
+    [adview.button setTitle:@"请点击进入" forState:UIControlStateNormal];
+    adview.button = nil;
+#endif
+    // 设置直接点击最后一张引导页就消失的功能
+    adview.clickLastPageCanDissmiss = YES;
+    
     
     // 添加视图
     [self.view addSubview:adview];

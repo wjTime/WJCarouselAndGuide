@@ -21,6 +21,7 @@
     BOOL _isTiming;
     NSTimer *_timer;
     BOOL _isGuide;
+    BOOL _isShowLastPageBtn;
     
     
 }
@@ -29,7 +30,8 @@
 
 @implementation WJCarouselAndGuide
 
--(void)showFirstTimeGuide:(NSArray *)imageArray{
+-(void)showFirstTimeGuide:(NSArray *)imageArray isShowLastPageBtn:(BOOL)show{
+    _isShowLastPageBtn = show;
     _isGuide = YES;
     if (![self isLaunchFirst]) {
         [self removeAdvert];
@@ -151,6 +153,19 @@
             [imageView addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
             [_src addSubview:imageView];
             
+            if (i == _imageArray.count - 1 && _isShowLastPageBtn) {
+    
+                self.button = [[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width-60, 22, 60, 30)];
+                self.button.titleLabel.font = [UIFont systemFontOfSize:12];
+                [self.button setTitle:@"点击进入" forState:UIControlStateNormal];
+                self.button.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.8];
+                [self.button addTarget:self action:@selector(removeAdvert) forControlEvents:UIControlEventTouchUpInside];
+                self.button.layer.cornerRadius = 3;
+                self.button.layer.masksToBounds = YES;
+                [imageView addSubview:self.button];
+               
+            }
+            
             
         }
         _pageControl.numberOfPages = _imageArray.count;
@@ -171,7 +186,7 @@
 - (void)click:(UIButton *)button{
     
     if (_isGuide) {
-        if (button.tag == 899 + _imageArray.count) {
+        if (button.tag == 899 + _imageArray.count && self.clickLastPageCanDissmiss) {
             [self removeAdvert];
         }else{
             button.userInteractionEnabled = NO;
@@ -215,6 +230,7 @@
     }else{
         
         _pageControl.currentPage = point.x/self.frame.size.width;
+        
     }
     
     

@@ -16,13 +16,30 @@
 
 @interface WJCarouselAndGuide : UIView
 
+
+
+/**
+ * 点击按钮可设置属性
+ */
+@property (nonatomic,strong)UIButton *button;
+
+/**
+ * pageControl可设置属性
+ */
 @property (nonatomic,strong)UIPageControl *pageControl;
+
+/**
+ * 点击最后一张就引导页消失
+ */
+@property (nonatomic,assign)BOOL clickLastPageCanDissmiss;
+
 @property (nonatomic,weak) id<WJCarouselAndGuideDelegate>delegate;
+
 
 /**
  * 显示启动引导页面
  */
--(void)showFirstTimeGuide:(NSArray *)imageArray;
+-(void)showFirstTimeGuide:(NSArray *)imageArray isShowLastPageBtn:(BOOL)show;
 
 /**
  * 显示广告轮播
