@@ -1,6 +1,7 @@
 # WJCarouselAndGuide
 a easy  photo carousel and app first time start show guide view fram 图片轮播 引导页
-// WJCarouselAndGuide可用于启动页面、也可用于图片轮播
+
+   // WJCarouselAndGuide可用于启动页面、也可用于图片轮播
     
     // 功能二: 显示图片轮播
     [self showLaunchAdvert];
@@ -13,19 +14,28 @@ a easy  photo carousel and app first time start show guide view fram 图片轮�
 //---------------------------------------------引导页面Demo-------------------------------------------
 // 显示启动引导页面
 - (void)showGuideView{
-    
     // 创建引导页面的adview
     WJCarouselAndGuide *adview = [[WJCarouselAndGuide alloc]initWithFrame:self.view.bounds];
     
     // 设置代理
     adview.delegate = self;
     
-    // 参数一：展示的图片名  参数二:点击图片对应的url  参数三:是否可循环重复滚动  参数四:是否设置定时自动滚动 (要定时自动播放 isRepeat的值也必须是YES)
-    [adview showFirstTimeGuide:@[@"1",@"2",@"3"]];
+    // 参数一：展示的图片名  参数二：是否显示最后一页的点击按钮
+    [adview showFirstTimeGuide:@[@"1",@"2",@"3"] isShowLastPageBtn:YES];
     
-    // 设置pageControl的颜色等各种属性
+    // 设置pageControl等各种属性(可不设置,不设置是默认值)
     adview.pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     adview.pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    
+#if 1
+    // 设置点击进入引导页消失的按钮各种属性(可不设置,不设置是默认值)
+    adview.button.backgroundColor = [UIColor redColor];
+    [adview.button setTitle:@"请点击进入" forState:UIControlStateNormal];
+    adview.button = nil;
+#endif
+    // 设置直接点击最后一张引导页就消失的功能
+    adview.clickLastPageCanDissmiss = YES;
+    
     
     // 添加视图
     [self.view addSubview:adview];
