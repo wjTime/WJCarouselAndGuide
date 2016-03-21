@@ -89,9 +89,10 @@
     adview.delegate = self;
     // 参数一：展示的图片名  参数二:点击图片对应的url  参数三:是否可循环重复滚动  参数四:是否设置定时自动滚动 (要定时自动播放 isRepeat的值也必须是YES)
     [adview showImages:@[@"4",@"5",@"6"] urls:@[@"www.baidu.com",@"www.sina.com.cn",@"www.163.com"] isRepeat:YES isTiming:YES];
-    // pageControl的颜色设置
+    // pageControl的颜色设置(不设置为默认样式)
     adview.pageControl.currentPageIndicatorTintColor = [UIColor redColor];
     adview.pageControl.pageIndicatorTintColor = [UIColor blueColor];
+    adview.pageControl.frame = CGRectMake(280, 200-30, 100, 30);
     // 添加视图
     [self.view addSubview:adview];
 }
