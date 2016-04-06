@@ -10,7 +10,7 @@
 
 
 
-@interface WJCarouselAndGuide (){
+@interface WJCarouselAndGuide ()<UIScrollViewDelegate>{
     
     UIScrollView *_src;
     NSArray *_imageArray;
@@ -104,6 +104,19 @@
     [self addSubview:_src];
     
 }
+
+- (UIViewController *)findViewController:(UIView *)sourceView
+{
+    id target=sourceView;
+    while (target) {
+        target = ((UIResponder *)target).nextResponder;
+        if ([target isKindOfClass:[UIViewController class]]) {
+            break;
+        }
+    }
+    return target;
+}
+
 //刷新数据
 -(void)reloadData{
     
